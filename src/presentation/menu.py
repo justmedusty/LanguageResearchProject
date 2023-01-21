@@ -3,13 +3,23 @@ from business.functionality import Functionality
 
 class Menu:
     def __init__(self):
+        """
+        A constructor.
+        """
         pass
 
     def print_name(self):
+        """
+        This function prints the name of the author of the code
+        :return: the string "Written by Dustyn Gibb"
+        """
         print("Written by Dustyn Gibb")
         return
 
     def menu(self):
+        """
+        The function prints a menu of options for the user to select from
+        """
         menu = '''
         Welcome to Practical Project Part 2, Select an option below
         
@@ -19,7 +29,7 @@ class Menu:
         4. Select multiple records
         5. Create new record and store in memory
         6. Edit a record in memory
-        7. Delete a record from memory\n
+        7. Delete a record from memory
     
         '''
 
@@ -28,6 +38,9 @@ class Menu:
         self.print_name()
 
     def show_menu(self):
+        """
+        It's a function that displays a menu, takes user input, and calls other functions based on the user input
+        """
         while True:
             user_action = Functionality()
             self.menu()

@@ -1,5 +1,26 @@
 class Model:
+    """
+       The function takes in a list of values and assigns them to the attributes of the class
+
+       :param ref_date: The reference date for the data value
+       :param geo: The geographic code for the province or territory
+       :param dguid: The Dimensional GUID of the data
+       :param area: The area of the data
+       :param uom: unit of measure
+       :param uom_id: The unit of measure identifier
+       :param scalar_factor: The scalar factor is a number that is used to multiply the value of the data
+       :param scalar_id: The scalar ID is a code that indicates the type of scalar used to adjust the value
+       :param vector: A single character that indicates the vector of the data
+       :param coordinate: The coordinate of the data point
+       :param value: The value of the data point
+       :param status:
+       :param symbol: The symbol of the data series
+       :param terminated: A boolean value indicating whether the series has been terminated
+       :param decimals: The number of decimal places to round the value to
+       """
+
     def __init__(self, ref_date, geo, dguid, area, uom, uom_id, scalar_factor, scalar_id, vector, coordinate, value,
+
                  status, symbol, terminated, decimals):
         self.ref_date = ref_date
         self.geo = geo
@@ -17,6 +38,7 @@ class Model:
         self.terminated = terminated
         self.decimals = decimals
 
+    # getters and setters
     def get_ref_date(self):
         return self.ref_date
 
