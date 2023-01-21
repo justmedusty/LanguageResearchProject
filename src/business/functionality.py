@@ -92,7 +92,10 @@ class Functionality:
             record_row = int(input("Enter record index to delete said record"))
             if record_row <= len(self.memory_bank):
                 record_row = record_row - 1
+                print(self.memory_bank[record_row])
                 del self.memory_bank[record_row]
+                print("Deleted")
+                return
 
 
             else:

@@ -3,7 +3,6 @@ import unittest
 from persistence import file_io
 
 
-# > The `MyTestCase` class is a subclass of the `unittest.TestCase` class
 class MyTestCase(unittest.TestCase):
     def test_file_writing(self):
         """
@@ -12,5 +11,6 @@ class MyTestCase(unittest.TestCase):
         """
         made_up_file = 'madeupfile.txt'
         file_io.open_file(made_up_file)
+        print("Test by Dustyn Gibb")
 
         self.assertRaises(FileNotFoundError)
