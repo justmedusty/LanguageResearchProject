@@ -32,6 +32,7 @@ class Functionality:
     def create_record(self):
         """
         The function takes in user input and creates a new record object, which is then appended to the memory bank
+        some fields left out for simplicity
         """
 
         ref_date = input("Enter ref date")
@@ -137,7 +138,3 @@ class Functionality:
         for item in my_list:
             print(item)
         return my_list
-
-    def no_such_command(self):
-        print("Invalid number, please select from numbers listed")
-        return "invalid number"
