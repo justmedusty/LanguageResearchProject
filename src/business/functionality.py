@@ -1,4 +1,5 @@
 import csv
+
 import persistence.file_io
 from business.create_record import CreateRecord
 
@@ -6,24 +7,19 @@ from business.create_record import CreateRecord
 class Functionality:
 
     def __init__(self):
-        pass
-
-    memory_bank = []
-    total_records = 0
-
-    def load_into_memory(self):
         file = persistence.file_io.file
         open_file = persistence.file_io.open_file(file)
         read_file = persistence.file_io.read_file(open_file)
         self.memory_bank = persistence.file_io.load_records(read_file)
         persistence.file_io.close_file(open_file)
 
+    total_records = 0
+
     def refresh_memory(self):
-        self.load_into_memory()
         for record in self.memory_bank:
             print(record)
-            self.total_records = self.memory_bank.len
-        print(self.total_records + " records shown")
+            self.total_records = len(self.memory_bank)
+        print(self.total_records)
         return self.memory_bank
 
     def create_record(self):
@@ -44,17 +40,18 @@ class Functionality:
         terminated = ""
         decimals = 0
 
-        new_record = CreateRecord.create_record(self, ref_date, geo, dguid, area, uom, uom_id, scalar_factor, scalar_id, vector,
-                                   coordinate,
-                                   value,
-                                   status, symbol, terminated, decimals)
+        new_record = CreateRecord.create_record(self, ref_date, geo, dguid, area, uom, uom_id, scalar_factor, scalar_id,
+                                                vector,
+                                                coordinate,
+                                                value,
+                                                status, symbol, terminated, decimals)
         self.memory_bank.append(new_record)
         print(new_record)
         print("Successfully added new record")
 
     def write_to_new_file(self):
         output_path = "new-file.csv"
-        with open(output_path) as output_file:
+        with open(output_path, 'w') as output_file:
             writer = csv.writer(output_file)
             writer.writerows(self.memory_bank)
             print("File has been written")
@@ -72,9 +69,9 @@ class Functionality:
 
         while True:
             record_row = int(input("Enter record index to delete said record"))
-            if record_index <= len(self.memory_bank):
-                record_index = record_index - 1
-                del self.memory_bank[record_index]
+            if record_row <= len(self.memory_bank):
+                record_row = record_row - 1
+                del self.memory_bank[record_row]
 
 
             else:
@@ -102,16 +99,16 @@ class Functionality:
 
     def display_many_records(self):
         number_to_show = (int(input("Type number of records to display")))
-        list = []
+        my_list = []
         counter = 0
         while counter < number_to_show:
-            list.append(self.memory_bank[counter])
+            my_list.append(self.memory_bank[counter])
             counter += 1
         else:
             print("Invalid number")
-        for record in list:
-            print(self.memory_bank[record])
-        return list
+        for item in my_list:
+            print(item)
+        return my_list
 
     def no_such_command(self):
         print("Invalid number, please select from numbers listed")

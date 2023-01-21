@@ -19,7 +19,9 @@ class Menu:
         4. Select multiple records
         5. Create new record and store in memory
         6. Edit a record in memory
-        7. Delete a record from memory'''
+        7. Delete a record from memory\n
+    
+        '''
 
         print(menu)
         print("-" * 60)
@@ -27,7 +29,8 @@ class Menu:
 
     def show_menu(self):
         while True:
-            user_action = Functionality
+            user_action = Functionality()
+            self.menu()
             user_choice = input("Insert choice from 1 to 7, press 0 to terminate")
             if user_choice == "0":
                 break
@@ -45,3 +48,5 @@ class Menu:
                 user_action.edit_record()
             elif user_choice == "7":
                 user_action.delete_record()
+            else:
+                print("invalid input")

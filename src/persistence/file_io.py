@@ -1,9 +1,14 @@
 import csv
 
-file = 'data.csv'
+file = '../presentation/data.csv'
 
 
 def open_file(filename):
+    """
+    Utilizes CSV api to read a csv file and return the opened file
+    :param filename: the csv file to be read
+    :return: the opened file
+    """
     try:
         opened_file = open(filename)
         return opened_file
@@ -12,7 +17,12 @@ def open_file(filename):
 
 
 def read_file(filename):
-    file_to_read = csv.reader(file)
+    """
+
+    :param filename: the csv file passed in
+    :return: the file to be read
+    """
+    file_to_read = csv.reader(filename)
     return file_to_read
 
 
@@ -24,6 +34,6 @@ def load_records(filename):
     records = []
 
     for record in filename:
-        if len(filename) < 100:
+        if len(records) < 100:
             records.append(record)
     return records
