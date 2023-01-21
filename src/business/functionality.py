@@ -5,15 +5,14 @@ from business.create_record import CreateRecord
 
 
 class Functionality:
-
+    total_records = 0
+    
     def __init__(self):
         file = persistence.file_io.file
         open_file = persistence.file_io.open_file(file)
         read_file = persistence.file_io.read_file(open_file)
         self.memory_bank = persistence.file_io.load_records(read_file)
         persistence.file_io.close_file(open_file)
-
-    total_records = 0
 
     def refresh_memory(self):
         for record in self.memory_bank:
