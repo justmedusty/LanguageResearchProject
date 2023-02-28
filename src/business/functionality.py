@@ -11,10 +11,15 @@ class Functionality:
         """
         This function opens a file, reads the file, loads the records from the file, and closes the file
         """
+        self.memory_bank = []
         file = persistence.file_io.file
         open_file = persistence.file_io.open_file(file)
         read_file = persistence.file_io.read_file(open_file)
-        self.memory_bank = persistence.file_io.load_records(read_file)
+        counter = 0
+        for row in read_file:
+            if counter > 0:
+                self.memory_bank.append(row)
+            counter += 1
         persistence.file_io.close_file(open_file)
 
     def refresh_memory(self):
@@ -141,3 +146,6 @@ class Functionality:
         for item in my_list:
             print(item)
         return my_list
+
+    def sort_records(self):
+        data_to_sort = SortingFunction()

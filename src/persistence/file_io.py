@@ -46,3 +46,18 @@ def load_records(filename):
         if len(records) < 100:
             records.append(record)
     return records
+
+
+def load_column_headers(filename):
+    """
+    This function takes a filename as an argument and returns a list of column headers.
+
+    :param filename: the name of the file you want to open
+    :return: The column headers are being returned.
+    """
+    column_headers = []
+    for record in filename:
+        counter = 0
+        if counter < 1:
+            column_headers.append(record)
+    return column_headers

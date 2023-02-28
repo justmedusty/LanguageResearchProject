@@ -30,6 +30,8 @@ class Menu:
         5. Create new record and store in memory
         6. Edit a record in memory
         7. Delete a record from memory
+        8. Sort the data in memory
+        9. Print the header data of the dataset
     
         '''
 
@@ -44,7 +46,7 @@ class Menu:
         while True:
             user_action = Functionality()
             self.menu()
-            user_choice = input("Insert choice from 1 to 7, press 0 to terminate")
+            user_choice = input("Insert choice from 1 to 9, press 0 to terminate")
             if user_choice == "0":
                 break
             elif user_choice == "1":
@@ -61,5 +63,9 @@ class Menu:
                 user_action.edit_record()
             elif user_choice == "7":
                 user_action.delete_record()
+            elif user_choice == "8":
+                user_action.sort_data()
+            elif user_choice == "9":
+                user_action.print_header_data()
             else:
                 print("invalid input")
