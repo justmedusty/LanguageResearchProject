@@ -64,8 +64,8 @@ class Menu:
             elif user_choice == "7":
                 user_action.delete_record()
             elif user_choice == "8":
-                user_action.sort_data()
+                user_action.sort_records()
             elif user_choice == "9":
-                user_action.print_header_data()
+                user_action.print_data()
             else:
                 print("invalid input")

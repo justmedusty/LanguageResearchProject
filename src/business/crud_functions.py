@@ -1,3 +1,4 @@
+# This class is used to create, read, update, and delete data from a list.
 class CrudFunctions:
     def __init__(self):
         pass
@@ -15,10 +16,11 @@ class CrudFunctions:
 
     def update_record(self, data, row, column, new_value):
         """
-        *|CURSOR_MARCADOR|*
+        It takes a list, a row number, a column number, and a new value, and returns the list of lists with the new
+        value in the specified row and column
 
         :param data: the data you want to update
-        :param row: The row number of the record you want to update
+        :param row: The row number of the record to update
         :param column: The column number of the cell you want to update
         :param new_value: The new value to be inserted into the table
         :return: The data is being returned.

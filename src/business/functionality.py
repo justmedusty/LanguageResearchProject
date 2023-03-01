@@ -2,6 +2,8 @@ import csv
 
 import persistence.file_io
 from business.create_record import CreateRecord
+from business.crud_functions import CrudFunctions
+from business.sorting_functions import SortingFunction
 
 
 class Functionality:
@@ -11,15 +13,20 @@ class Functionality:
         """
         This function opens a file, reads the file, loads the records from the file, and closes the file
         """
+
         self.memory_bank = []
         file = persistence.file_io.file
         open_file = persistence.file_io.open_file(file)
         read_file = persistence.file_io.read_file(open_file)
+        load_records = persistence.file_io.load_records(read_file)
         counter = 0
-        for row in read_file:
+        self.crud = CrudFunctions()
+        for row in load_records:
             if counter > 0:
                 self.memory_bank.append(row)
             counter += 1
+
+        self.column_heading = load_records[0]
         persistence.file_io.close_file(open_file)
 
     def refresh_memory(self):
@@ -61,7 +68,7 @@ class Functionality:
                                                 coordinate,
                                                 value,
                                                 status, symbol, terminated, decimals)
-        self.memory_bank.append(new_record)
+        self.crud.create_record(new_record, self.memory_bank)
         print(new_record)
         print("Successfully added new record")
 
@@ -98,7 +105,7 @@ class Functionality:
             if record_row <= len(self.memory_bank):
                 record_row = record_row - 1
                 print(self.memory_bank[record_row])
-                del self.memory_bank[record_row]
+                self.crud.delete_record(self.memory_bank, record_row)
                 print("Deleted")
                 return
 
@@ -120,7 +127,7 @@ class Functionality:
                     record_column = record_column - 1
                     print(self.memory_bank[record_row][record_column])
                     new_record_value = input("Enter new record value")
-                    self.memory_bank[record_row][record_column] = new_record_value
+                    self.crud.update_record(self.memory_bank, record_column, record_row, new_record_value)
                     print(self.memory_bank[record_row][record_column])
                     print("Updated")
                     return
@@ -148,4 +155,28 @@ class Functionality:
         return my_list
 
     def sort_records(self):
+        """
+        This function allows the user to sort the data in ascending or descending order
+        :return: The memory bank is being returned.
+        """
         data_to_sort = SortingFunction()
+        while True:
+            order = input('Order ("1" for Ascending or "2" for Descending: ')
+            if order.upper() == '1':
+                data_to_sort.sort_ascending(self.memory_bank)
+                self.print_data()
+                return self.memory_bank
+            elif order.upper() == '2':
+                data_to_sort.sort_descending(self.memory_bank)
+                self.print_data()
+                return self.memory_bank
+            else:
+                print('Invalid input')
+
+    def print_data(self):
+        """
+        The function prints the column heading and then prints each record in the memory bank.
+        """
+        print(self.column_heading)
+        for record in self.memory_bank:
+            print(record)
